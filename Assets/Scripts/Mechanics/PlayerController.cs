@@ -5,6 +5,7 @@ using Platformer.Gameplay;
 using static Platformer.Core.Simulation;
 using Platformer.Model;
 using Platformer.Core;
+using Unity.VisualScripting;
 
 namespace Platformer.Mechanics
 {
@@ -118,9 +119,9 @@ namespace Platformer.Mechanics
                 }
             }
 
-            if (move.x > 0.01f)
+            if (move.x > 0.001f)
                 spriteRenderer.flipX = false;
-            else if (move.x < -0.01f)
+            else if (move.x < -0.001f)
                 spriteRenderer.flipX = true;
 
             animator.SetBool("grounded", IsGrounded);

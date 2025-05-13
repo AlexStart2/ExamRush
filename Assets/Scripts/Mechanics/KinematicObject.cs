@@ -67,7 +67,7 @@ namespace Platformer.Mechanics
         {
             body.position = position;
             velocity *= 0;
-            body.velocity *= 0;
+            body.linearVelocity *= 0;
         }
 
         protected virtual void OnEnable()
@@ -101,29 +101,29 @@ namespace Platformer.Mechanics
 
         protected virtual void FixedUpdate()
         {
-            //if already falling, fall faster than the jump speed, otherwise use normal gravity.
-            if (velocity.y < 0)
-                velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-            else
-                velocity += Physics2D.gravity * Time.deltaTime;
+            //velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+            velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
 
+            //velocity.x = targetVelocity.x;
             velocity.x = targetVelocity.x;
 
             IsGrounded = false;
 
+                  // reset to “flat ground” each frame so we always have a sane baseline
+            groundNormal = Vector2.up;
+
             var deltaPosition = velocity * Time.deltaTime;
 
+            // use the current groundNormal to slide along slopes
             var moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
-
             var move = moveAlongGround * deltaPosition.x;
 
             PerformMovement(move, false);
 
             move = Vector2.up * deltaPosition.y;
-
             PerformMovement(move, true);
-
         }
+
 
         void PerformMovement(Vector2 move, bool yMovement)
         {
@@ -169,6 +169,9 @@ namespace Platformer.Mechanics
                     distance = modifiedDistance < distance ? modifiedDistance : distance;
                 }
             }
+
+            // With this corrected line:
+            
             body.position = body.position + move.normalized * distance;
         }
 
