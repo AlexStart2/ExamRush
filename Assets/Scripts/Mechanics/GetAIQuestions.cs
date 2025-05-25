@@ -21,6 +21,33 @@ public class GetAIQuestions : MonoBehaviour
 "All questions must be about computer science topics.\n"+
 "Respond with* only* the JSON. No other text.";
 
+    public static GetAIQuestions Instance { get; private set; }
+
+    [Serializable]
+    public class AiResponse
+    {
+        public Candidate[] candidates;
+    }
+
+    [Serializable]
+    public class Candidate
+    {
+        public Content content;
+    }
+
+    [Serializable]
+    public class Content
+    {
+        public Part[] parts;
+    }
+
+    [Serializable]
+    public class Part
+    {
+        public string text;
+    }
+
+
     [Serializable]
     public class Question
     {
@@ -41,20 +68,32 @@ public class GetAIQuestions : MonoBehaviour
 
     void Awake()
     {
-        var envVars = SimpleEnvLoader.LoadEnvFile(".env");
-
-        if (envVars.TryGetValue("GAS_URL", out string apiKey))
+        if (Instance == null)
         {
-            Debug.Log("GAS_URL: " + apiKey);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
         }
 
-        //StartCoroutine(Temp(apiUrl));
+        var envVars = SimpleEnvLoader.LoadEnvFile(".env");
+
+        if (!envVars.TryGetValue("GAS_URL", out string apiKey))
+        {
+            Debug.LogError("GAS_URL not found in .env file.");
+            return;
+        }
+
+            StartCoroutine(Temp(envVars["GAS_URL"]));
     }
     private IEnumerator Temp(string url)
     {
         WWWForm form = new WWWForm();
         form.AddField("parameter", prompt);
-        Debug.Log("Sending data to GAS: " + prompt);
+        //Debug.Log("Sending data to GAS: " + prompt);
         UnityWebRequest www = UnityWebRequest.Post(url, form);
 
         // Measure how much time it takes to send and recieve the data
@@ -66,7 +105,18 @@ public class GetAIQuestions : MonoBehaviour
         if (www.result == UnityWebRequest.Result.Success)
         {
             response = www.downloadHandler.text;
-            Data = JsonUtility.FromJson<QuizData>(www.downloadHandler.text);
+            var outer = JsonUtility.FromJson<AiResponse>(response);
+
+            string fenced = outer.candidates[0].content.parts[0].text;
+            string withoutFences = fenced
+                .Replace("```json\n", "")
+                .Replace("```", "")
+                .Trim();
+
+            // 4. Now parse that inner quiz JSON:
+            Data = JsonUtility.FromJson<QuizData>(withoutFences);
+
+            //Data = JsonUtility.FromJson<QuizData>(www.downloadHandler.text);
         }
         else
         {
@@ -77,11 +127,5 @@ public class GetAIQuestions : MonoBehaviour
         DateTime endTime = DateTime.Now;
         TimeSpan timeTaken = endTime - startTime;
         Debug.Log("Time taken to send and receive data: " + timeTaken.TotalMilliseconds + " ms");
-
-        // Write the response to a file
-
-        string filePath = "D:/AIResponse.txt";
-
-        System.IO.File.WriteAllText(filePath, response);
     }
 }
