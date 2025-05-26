@@ -3,7 +3,6 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-using System.IO;
 
 
 public class GetAIQuestions : MonoBehaviour
@@ -91,8 +90,12 @@ public class GetAIQuestions : MonoBehaviour
     }
     private IEnumerator Temp(string url)
     {
+
+        float rnd = UnityEngine.Random.Range(0.0f,2.0f);
+        Debug.Log("Random number for temp: " + rnd);
         WWWForm form = new WWWForm();
         form.AddField("parameter", prompt);
+        form.AddField("temp", rnd.ToString());
         //Debug.Log("Sending data to GAS: " + prompt);
         UnityWebRequest www = UnityWebRequest.Post(url, form);
 
