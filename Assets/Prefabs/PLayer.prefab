@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 1453717623883710092}
   - component: {fileID: 8539636549729732877}
   - component: {fileID: 66212803073132286}
+  - component: {fileID: 8012807974612752300}
   - component: {fileID: 7883110999145882315}
-  - component: {fileID: 8208932496901800045}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: Player
+  m_Name: PLayer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 1890207456686743436}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.63, y: -0.56, z: 0}
-  m_LocalScale: {x: 1.1202, y: 1.321836, z: 1.1202}
+  m_LocalPosition: {x: -8.95, y: -0.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -164,6 +164,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6366813, y: 1.986419}
   m_EdgeRadius: 0
+--- !u!114 &8012807974612752300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890207456686743436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709ee11994a2f44658e5fc9887c45081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minGroundNormalY: 0.65
+  gravityModifier: 1
+  velocity: {x: 0, y: 0}
+  jumpAudio: {fileID: 0}
+  respawnAudio: {fileID: 0}
+  ouchAudio: {fileID: 0}
+  maxSpeed: 7
+  jumpTakeOffSpeed: 5
+  jumpState: 0
+  collider2d: {fileID: 0}
+  audioSource: {fileID: 0}
+  controlEnabled: 1
 --- !u!95 &7883110999145882315
 Animator:
   serializedVersion: 7
@@ -186,27 +210,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8208932496901800045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890207456686743436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 709ee11994a2f44658e5fc9887c45081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minGroundNormalY: 0.65
-  gravityModifier: 4
-  velocity: {x: 0, y: 0}
-  jumpAudio: {fileID: 0}
-  respawnAudio: {fileID: 0}
-  ouchAudio: {fileID: 0}
-  maxSpeed: 9
-  jumpTakeOffSpeed: 11
-  jumpState: 0
-  collider2d: {fileID: 0}
-  audioSource: {fileID: 0}
-  controlEnabled: 1
