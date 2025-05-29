@@ -177,13 +177,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
-  gravityModifier: 1
+  gravityModifier: 4
   velocity: {x: 0, y: 0}
   jumpAudio: {fileID: 0}
   respawnAudio: {fileID: 0}
   ouchAudio: {fileID: 0}
-  maxSpeed: 7
-  jumpTakeOffSpeed: 5
+  maxSpeed: 9
+  jumpTakeOffSpeed: 11
   jumpState: 0
   collider2d: {fileID: 0}
   audioSource: {fileID: 0}
