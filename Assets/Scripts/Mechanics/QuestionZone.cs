@@ -1,10 +1,14 @@
 using Platformer.Mechanics;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuestionZone : MonoBehaviour
 {
+
     bool triggered = false;
     public QuestionUIManager uiManager;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         
@@ -21,7 +25,30 @@ public class QuestionZone : MonoBehaviour
             return;
         }
 
-        GetAIQuestions.Question q =  GetAIQuestions.Data.easy[0];
+        // Find the name of the active scene view and assign it to level
+
+        GetAIQuestions.Question q;
+
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Level 1":
+                q = GetAIQuestions.Data.easy[0];
+                GetAIQuestions.Data.easy.RemoveAt(0);
+                break;
+            case "Level 2":
+                q = GetAIQuestions.Data.normal[0];
+                GetAIQuestions.Data.normal.RemoveAt(0);
+                break;
+            case "Level 3":
+                q = GetAIQuestions.Data.hard[0];
+                GetAIQuestions.Data.hard.RemoveAt(0);
+                break;
+            default:
+                Debug.LogError("Unknown scene name: " + SceneManager.GetActiveScene().name);
+                return;
+        }
+
+
 
         var pc = other.GetComponent<PlayerController>();
         
@@ -41,10 +68,6 @@ public class QuestionZone : MonoBehaviour
                 }
                 uiManager.ShowQuestion(q, pc);
             }
-
-                
-        }
-
-        GetAIQuestions.Data.easy.RemoveAt(0);
+        }      
     }
 }

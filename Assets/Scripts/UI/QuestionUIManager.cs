@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using static GetAIQuestions;
 using TMPro;
 using Platformer.Mechanics;
+using System.Collections;
+
 
 
 public class QuestionUIManager : MonoBehaviour
@@ -46,27 +48,76 @@ public class QuestionUIManager : MonoBehaviour
 
     void OnAnswerSelected(int index, PlayerController pc)
     {
-        panel.SetActive(false);
         bool correct = (index == currentQuestion.correctIndex);
+        StartCoroutine(HandleAnswerFeedback(index, correct, pc));
+    }
 
-        if (pc != null) { 
-            pc.controlEnabled = true; 
-        }
-        else {
-            Debug.LogWarning("PlayerController not found on QuestionUIManager.");
+    IEnumerator HandleAnswerFeedback(int index, bool correct, PlayerController pc)
+    {
+        // Get the selected button and its Image
+        var btn = answerButtons[index];
+        var btnCorrect = answerButtons[currentQuestion.correctIndex];
+        var btnImage = btn.GetComponent<Image>();
+        var btnCorrectImage = btnCorrect.GetComponent<Image>();
+
+        // Save original color
+        Color originalColor = btnImage.color;
+
+        // Set to green if correct, red if wrong
+        btnCorrectImage.color = Color.Lerp(originalColor, Color.green, 0.5f);
+
+        if (!correct)
+        {
+            btnImage.color =  Color.Lerp(originalColor, Color.red, 0.5f);
         }
        
 
-        if (correct)
+        // Wait for 1 second
+        yield return new WaitForSeconds(1f);
+
+        // Reset button color
+        btnImage.color = originalColor;
+        btnCorrectImage.color = originalColor;
+
+        // Hide panel
+        panel.SetActive(false);
+
+        // Enable player control
+        if (pc != null)
         {
-            pc.maxSpeed = 12.0f;
-            pc.jumpTakeOffSpeed = 16.0f;
+            pc.controlEnabled = true;
+
+            if (correct)
+            {
+                if (pc.maxSpeed == 6.0f)
+                {
+                    pc.maxSpeed = pc.getNormalSpeed();
+                    pc.jumpTakeOffSpeed = pc.getNormalJumpSpeed();
+                }
+                else
+                {
+                    pc.maxSpeed = pc.maxSpeedWithPowerUp;
+                    pc.jumpTakeOffSpeed = pc.jumpTakeOffSpeedWithPowerUp;
+                }
+            }
+            else
+            {
+                if (pc.maxSpeed == pc.maxSpeedWithPowerUp)
+                {
+                    pc.maxSpeed = pc.getNormalSpeed();
+                    pc.jumpTakeOffSpeed = pc.getNormalJumpSpeed();
+                }
+                else
+                {
+                    pc.maxSpeed = pc.maxSpeedWithPenalty;
+                    pc.jumpTakeOffSpeed = pc.jumpTakeOffSpeedWithPenalty;
+                }
+            }
         }
         else
         {
-            pc.maxSpeed = 5.0f;
-            pc.jumpTakeOffSpeed = 7.0f;
+            Debug.LogWarning("PlayerController not found on QuestionUIManager.");
         }
-
     }
+
 }

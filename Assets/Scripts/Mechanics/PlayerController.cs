@@ -22,11 +22,31 @@ namespace Platformer.Mechanics
         /// <summary>
         /// Max horizontal speed of the player.
         /// </summary>
-        public float maxSpeed = 7;
+        public float maxSpeed = 9.0f;
+        public float jumpTakeOffSpeed = 11.0f;
+
+        private float maxSpeedNormal;
+        private float jumpTakeOffSpeedNormal;
+
+        public float getNormalSpeed()
+        {
+            return maxSpeedNormal;
+        }
+        public float getNormalJumpSpeed()
+        {
+            return jumpTakeOffSpeedNormal;
+        }
+
+
         /// <summary>
         /// Initial jump velocity at the start of a jump.
         /// </summary>
-        public float jumpTakeOffSpeed = 7;
+
+
+        public float maxSpeedWithPowerUp = 12.0f;
+        public float jumpTakeOffSpeedWithPowerUp = 16.0f;
+        public float maxSpeedWithPenalty = 6.0f;
+        public float jumpTakeOffSpeedWithPenalty = 8.0f;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
@@ -50,6 +70,9 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
+
+            maxSpeedNormal = maxSpeed;
+            jumpTakeOffSpeedNormal = jumpTakeOffSpeed;
         }
 
         protected override void Update()

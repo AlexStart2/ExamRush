@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Platformer.Mechanics;
 
 
 public class GetAIQuestions : MonoBehaviour
@@ -21,6 +22,8 @@ public class GetAIQuestions : MonoBehaviour
 "Respond with* only* the JSON. No other text.";
 
     public static GetAIQuestions Instance { get; private set; }
+    public GameObject loadingPanel; // Assign in the Inspector
+
 
     [Serializable]
     public class AiResponse
@@ -65,18 +68,35 @@ public class GetAIQuestions : MonoBehaviour
 
     public static QuizData Data;
 
+    
+
     void Awake()
     {
-        if (Instance == null)
+        PlayerController pc = FindFirstObjectByType<PlayerController>();
+        LevelTimer levelTimer = FindFirstObjectByType<LevelTimer>();
+        if (levelTimer != null)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            levelTimer.timerIsRunning = false; // Disable LevelTimer if it exists
         }
-        else
+        
+        
+        if (pc != null)
         {
-            Destroy(gameObject);
-            return;
+            pc.controlEnabled = false; // Disable player control while loading
         }
+
+
+
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
 
         var envVars = SimpleEnvLoader.LoadEnvFile(".env");
 
@@ -86,10 +106,19 @@ public class GetAIQuestions : MonoBehaviour
             return;
         }
 
-            StartCoroutine(Temp(envVars["GAS_URL"]));
+        StartCoroutine(Temp(envVars["GAS_URL"]));
+
+        loadingPanel.SetActive(true); // Show loading panel at the start
+
     }
+
+    //private void Start()
+    //{
+        
+    //}
     private IEnumerator Temp(string url)
     {
+        PlayerController pc = FindFirstObjectByType<PlayerController>();
 
         float rnd = UnityEngine.Random.Range(0.0f,2.0f);
         Debug.Log("Random number for temp: " + rnd);
@@ -130,5 +159,15 @@ public class GetAIQuestions : MonoBehaviour
         DateTime endTime = DateTime.Now;
         TimeSpan timeTaken = endTime - startTime;
         Debug.Log("Time taken to send and receive data: " + timeTaken.TotalMilliseconds + " ms");
+        loadingPanel.SetActive(false); // Hide loading panel after starting the coroutine
+        if (pc != null)
+        {
+            pc.controlEnabled = true; // Re-enable player control after loading
+        }
+        LevelTimer levelTimer = FindFirstObjectByType<LevelTimer>();
+        if (levelTimer != null)
+        {
+            levelTimer.timerIsRunning = true; // Disable LevelTimer if it exists
+        }
     }
 }
