@@ -12,10 +12,9 @@ namespace Platformer.Mechanics
         void OnTriggerEnter2D(Collider2D collider)
         {
             var p = collider.gameObject.GetComponent<PlayerController>();
-            if (p != null)
+            if (p != null && collider.CompareTag("Player"))
             {
-                var ev = Schedule<PlayerEnteredVictoryZone>();
-                ev.victoryZone = this;
+                Debug.Log("VictoryZone triggered by player.");
             }
         }
     }
