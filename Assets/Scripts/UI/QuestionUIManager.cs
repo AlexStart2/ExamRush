@@ -86,8 +86,33 @@ public class QuestionUIManager : MonoBehaviour
         if (pc != null)
         {
             pc.controlEnabled = true;
-            pc.maxSpeed = correct ? 12.0f : 6.0f;
-            pc.jumpTakeOffSpeed = correct ? 16.0f : 8.0f;
+
+            if (correct)
+            {
+                if (pc.maxSpeed == 6.0f)
+                {
+                    pc.maxSpeed = pc.getNormalSpeed();
+                    pc.jumpTakeOffSpeed = pc.getNormalJumpSpeed();
+                }
+                else
+                {
+                    pc.maxSpeed = pc.maxSpeedWithPowerUp;
+                    pc.jumpTakeOffSpeed = pc.jumpTakeOffSpeedWithPowerUp;
+                }
+            }
+            else
+            {
+                if (pc.maxSpeed == pc.maxSpeedWithPowerUp)
+                {
+                    pc.maxSpeed = pc.getNormalSpeed();
+                    pc.jumpTakeOffSpeed = pc.getNormalJumpSpeed();
+                }
+                else
+                {
+                    pc.maxSpeed = pc.maxSpeedWithPenalty;
+                    pc.jumpTakeOffSpeed = pc.jumpTakeOffSpeedWithPenalty;
+                }
+            }
         }
         else
         {
