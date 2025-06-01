@@ -14,9 +14,9 @@ public class GetAIQuestions : MonoBehaviour
 "- 'hard': an array of 10 question objects.\n" +
 "Each question object should look like: \n"+
 "{ " +
-"'question': '…',\n"+
+"'question': '...',\n"+
 "'options': ['optionA', 'optionB', 'optionC', 'optionD'],\n"+
-"'correctIndex': < integer 0–3 >" +
+"'correctIndex': < integer 0-3 >" +
 "}\n" +
 "All questions must be about computer science topics.\n"+
 "Respond with* only* the JSON. No other text.";

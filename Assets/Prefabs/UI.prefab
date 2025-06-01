@@ -1978,7 +1978,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3926421714224850244}
-  - component: {fileID: 3911790811072656519}
   m_Layer: 0
   m_Name: GetQuestions
   m_TagString: Untagged
@@ -2001,19 +2000,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 661062736011422966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3911790811072656519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5184055071013833408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b42805612a87fe9498c182c3ff0b9820, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingPanel: {fileID: 6558419305638031244}
 --- !u!1 &5371166761675848114
 GameObject:
   m_ObjectHideFlags: 0
