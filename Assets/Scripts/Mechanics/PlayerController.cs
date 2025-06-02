@@ -44,9 +44,9 @@ namespace Platformer.Mechanics
 
 
         public float maxSpeedWithPowerUp = 12.0f;
-        public float jumpTakeOffSpeedWithPowerUp = 16.0f;
-        public float maxSpeedWithPenalty = 6.0f;
-        public float jumpTakeOffSpeedWithPenalty = 8.0f;
+        public float jumpTakeOffSpeedWithPowerUp = 12.0f;
+        public float maxSpeedWithPenalty = 7.0f;
+        public float jumpTakeOffSpeedWithPenalty = 10.0f;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;

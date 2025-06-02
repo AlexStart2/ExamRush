@@ -17,12 +17,12 @@ public class QuestionZone : MonoBehaviour
         if(GetAIQuestions.Data == null)
         {
             Debug.LogError("AI Questions data is not loaded yet.");
-            return;
+            //return;
         }
         else if (GetAIQuestions.Data.easy.Count == 0)
         {
             Debug.LogError("No questions available in the AI Questions data.");
-            return;
+           // return;
         }
 
         // Find the name of the active scene view and assign it to level
@@ -36,18 +36,23 @@ public class QuestionZone : MonoBehaviour
                 GetAIQuestions.Data.easy.RemoveAt(0);
                 break;
             case "Level 2":
-                q = GetAIQuestions.Data.normal[0];
-                GetAIQuestions.Data.normal.RemoveAt(0);
+              //  q = GetAIQuestions.Data.normal[0];
+                //GetAIQuestions.Data.normal.RemoveAt(0);
                 break;
             case "Level 3":
-                q = GetAIQuestions.Data.hard[0];
-                GetAIQuestions.Data.hard.RemoveAt(0);
+                //q = GetAIQuestions.Data.hard[0];
+                //GetAIQuestions.Data.hard.RemoveAt(0);
                 break;
             default:
                 Debug.LogError("Unknown scene name: " + SceneManager.GetActiveScene().name);
                 return;
         }
 
+
+            q = new GetAIQuestions.Question();
+            q.question = "No question available for this level.";
+            q.options = new System.Collections.Generic.List<string> { "N/A", "N/A", "N/A", "N/A" };
+            q.correctIndex = 1; // Default to the first option
 
 
         var pc = other.GetComponent<PlayerController>();
