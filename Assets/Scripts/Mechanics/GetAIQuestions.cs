@@ -12,13 +12,13 @@ public class GetAIQuestions : MonoBehaviour
 "- 'easy': an array of 3 question objects.\n" +
 "- 'normal': an array of 6 question objects.\n" +
 "- 'hard': an array of 10 question objects.\n" +
-"Each question object should look like: \n"+
+"Each question object should look like: \n" +
 "{ " +
-"'question': '…',\n"+
-"'options': ['optionA', 'optionB', 'optionC', 'optionD'],\n"+
-"'correctIndex': < integer 0–3 >" +
+"'question': '...',\n" +
+"'options': ['optionA', 'optionB', 'optionC', 'optionD'],\n" +
+"'correctIndex': < integer 0-3 >" +
 "}\n" +
-"All questions must be about computer science topics.\n"+
+"All questions must be about computer science topics.\n" +
 "Respond with* only* the JSON. No other text.";
 
     public static GetAIQuestions Instance { get; private set; }
@@ -68,7 +68,7 @@ public class GetAIQuestions : MonoBehaviour
 
     public static QuizData Data;
 
-    
+
 
     void Awake()
     {
@@ -78,8 +78,8 @@ public class GetAIQuestions : MonoBehaviour
         {
             levelTimer.timerIsRunning = false; // Disable LevelTimer if it exists
         }
-        
-        
+
+
         if (pc != null)
         {
             pc.controlEnabled = false; // Disable player control while loading
@@ -114,13 +114,13 @@ public class GetAIQuestions : MonoBehaviour
 
     //private void Start()
     //{
-        
+
     //}
     private IEnumerator Temp(string url)
     {
         PlayerController pc = FindFirstObjectByType<PlayerController>();
 
-        float rnd = UnityEngine.Random.Range(0.0f,2.0f);
+        float rnd = UnityEngine.Random.Range(0.0f, 2.0f);
         Debug.Log("Random number for temp: " + rnd);
         WWWForm form = new WWWForm();
         form.AddField("parameter", prompt);
