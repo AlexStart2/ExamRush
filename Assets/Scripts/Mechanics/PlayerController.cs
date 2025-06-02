@@ -24,6 +24,9 @@ namespace Platformer.Mechanics
         /// </summary>
         public float maxSpeed = 9.0f;
         public float jumpTakeOffSpeed = 11.0f;
+        private bool isSlowed = false;
+        public float slowDuration = 2.0f;
+        public float slowedByObstacle = 4.0f;
 
         private float maxSpeedNormal;
         private float jumpTakeOffSpeedNormal;
@@ -151,6 +154,26 @@ namespace Platformer.Mechanics
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
+        }
+
+
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Obstacle") && !isSlowed)
+            {
+                StartCoroutine(SlowDown());
+            }
+        }
+
+        System.Collections.IEnumerator SlowDown()
+        {
+            isSlowed = true;
+            maxSpeed -= slowedByObstacle;
+
+            yield return new WaitForSeconds(slowDuration);
+
+            maxSpeed += slowedByObstacle;
+            isSlowed = false;
         }
 
         public enum JumpState
