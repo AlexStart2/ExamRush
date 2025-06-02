@@ -14,9 +14,9 @@ public class GetAIQuestions : MonoBehaviour
 "- 'hard': an array of 10 question objects.\n" +
 "Each question object should look like: \n" +
 "{ " +
-"'question': '...',\n" +
+"'question': '�',\n" +
 "'options': ['optionA', 'optionB', 'optionC', 'optionD'],\n" +
-"'correctIndex': < integer 0-3 >" +
+"'correctIndex': < integer 0�3 >" +
 "}\n" +
 "All questions must be about computer science topics.\n" +
 "Respond with* only* the JSON. No other text.";
@@ -135,7 +135,7 @@ public class GetAIQuestions : MonoBehaviour
 
             var outer = JsonUtility.FromJson<AiResponse>(response);
 
-            
+
 
             string fenced = outer.candidates[0].content.parts[0].text;
 
@@ -174,7 +174,7 @@ public class GetAIQuestions : MonoBehaviour
         //public static QuizData Data;
 
         /// <summary>
-        /// Call this with the full AI response text (including ```json … ```), and it will
+        /// Call this with the full AI response text (including ```json � ```), and it will
         /// extract the inner JSON and populate QuizParser.Data.
         /// </summary>
         public static void ParseAIResponse(string rawResponse)
@@ -219,42 +219,4 @@ public class GetAIQuestions : MonoBehaviour
             }
         }
     }
-
-    public class PromptData
-    {
-        public string prompt;
-    }
-    IEnumerator AskOllama(string question)
-    {
-        PromptData data = new PromptData { prompt = question };
-        string json = JsonUtility.ToJson(data);
-
-        UnityWebRequest www = new UnityWebRequest("http://localhost:5000/ask", "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
-        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        www.downloadHandler = new DownloadHandlerBuffer();
-        www.SetRequestHeader("Content-Type", "application/json");
-
-
-        Debug.Log("Sending request to Ollama");
-
-        //yield return www.SendWebRequest();
-
-        Debug.Log("Request sent to Ollama");
-
-        if (www.result == UnityWebRequest.Result.Success)
-        {
-            // read from file
-            string response = System.IO.File.ReadAllText("D:/AIResponse.txt");
-
-            QuizParser.ParseAIResponse(response);
-        }
-        else
-        {
-            Debug.LogError("Request failed: " + www.error);
-        }
-
-        yield return new WaitForSeconds(1f); // Wait a bit before re-enabling controls
-    }
-
 }
