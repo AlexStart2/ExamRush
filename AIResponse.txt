@@ -1,0 +1,35 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n{\n  \"easy\": [\n    {\n      \"question\": \"What does CPU stand for?\",\n      \"options\": [\"Central Processing Unit\", \"Computer Peripheral Unit\", \"Control Programming Unit\", \"Common Power Unit\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is RAM?\",\n      \"options\": [\"Read Only Memory\", \"Random Access Memory\", \"Really Amazing Memory\", \"Regular Arithmetic Memory\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"Which of these is a programming language?\",\n      \"options\": [\"Microsoft Word\", \"Adobe Photoshop\", \"Python\", \"Google Chrome\"],\n      \"correctIndex\": 2\n    }\n  ],\n  \"normal\": [\n    {\n      \"question\": \"What is an algorithm?\",\n      \"options\": [\"A type of computer virus\", \"A set of instructions to solve a problem\", \"A hardware component\", \"A type of data storage\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What does HTML stand for?\",\n      \"options\": [\"Hyper Text Markup Language\", \"Highly Typed Machine Language\", \"Home Tool Markup Language\", \"Hyperlink and Text Management Language\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is a database?\",\n      \"options\": [\"A collection of songs\", \"An organized collection of data\", \"A type of computer game\", \"A graphical user interface\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What is the purpose of a firewall?\",\n      \"options\": [\"To keep a computer cool\", \"To prevent unauthorized access to a network\", \"To speed up internet browsing\", \"To improve computer graphics\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What is object-oriented programming?\",\n      \"options\": [\"A programming style that uses only visual elements\", \"A programming paradigm based on objects and classes\", \"A programming language that only uses machine code\", \"A method for creating 3D models\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What is version control?\",\n      \"options\": [\"Controlling the speed of a program\", \"Managing and tracking changes to software code\", \"Protecting a computer from viruses\", \"Organizing files in a file system\"],\n      \"correctIndex\": 1\n    }\n  ],\n  \"hard\": [\n    {\n      \"question\": \"What is the time complexity of merge sort?\",\n      \"options\": [\"O(n)\", \"O(n^2)\", \"O(log n)\", \"O(n log n)\"],\n      \"correctIndex\": 3\n    },\n    {\n      \"question\": \"What is a deadlock in operating systems?\",\n      \"options\": [\"A situation where two or more processes are blocked indefinitely, waiting for each other\", \"A type of computer virus\", \"A hardware failure\", \"A software bug that causes a program to crash\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is the CAP theorem?\",\n      \"options\": [\"A theorem about the speed of computer processors\", \"A theorem about the trade-offs in distributed systems between Consistency, Availability, and Partition tolerance\", \"A theorem about the security of computer networks\", \"A theorem about the limitations of artificial intelligence\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What is the difference between TCP and UDP?\",\n      \"options\": [\"TCP is faster than UDP\", \"TCP provides reliable, ordered delivery, while UDP is connectionless and unreliable\", \"UDP is used for email, while TCP is used for web browsing\", \"There is no difference between TCP and UDP\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What is the purpose of a hash function?\",\n      \"options\": [\"To encrypt data\", \"To generate a unique identifier for a piece of data\", \"To compress data\", \"To sort data\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"Explain the concept of polymorphism in object-oriented programming.\",\n      \"options\": [\"The ability of a class to inherit from multiple classes\", \"The ability of an object to take on many forms\", \"The process of hiding data within an object\", \"The ability to create multiple instances of a class\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What is the difference between authentication and authorization?\",\n      \"options\": [\"Authentication verifies identity, while authorization determines access rights\", \"Authorization verifies identity, while authentication determines access rights\", \"They are the same thing\", \"Authentication is only used for websites, while authorization is used for applications\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is a microservice architecture?\",\n      \"options\": [\"A monolithic application built with very small components\", \"An architectural style that structures an application as a collection of loosely coupled services\", \"A type of operating system\", \"A programming language designed for small devices\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What is the role of a compiler?\",\n      \"options\": [\"To execute code directly\", \"To translate high-level code into machine code\", \"To debug code\", \"To manage memory allocation\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"Explain the concept of ACID properties in database transactions.\",\n      \"options\": [\"Atomicity, Consistency, Isolation, Durability\", \"Accuracy, Consistency, Integrity, Durability\", \"Atomicity, Completion, Isolation, Definition\", \"Access, Control, Integrity, Definition\"],\n      \"correctIndex\": 0\n    }\n  ]\n}\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "avgLogprobs": -0.17502721449908087
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 122,
+    "candidatesTokenCount": 1275,
+    "totalTokenCount": 1397,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1275
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "Iyc_aOicFrymnvgPiqea4A0"
+}

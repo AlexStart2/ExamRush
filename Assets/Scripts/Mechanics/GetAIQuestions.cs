@@ -92,11 +92,12 @@ public class GetAIQuestions : MonoBehaviour
             Debug.LogError("GAS_URL not found in .env file.");
             return;
         }
+        loadingPanel.SetActive(true);
 
         StartCoroutine(Temp(envVars["GAS_URL"]));
         //StartCoroutine(AskOllama(prompt));
 
-        loadingPanel.SetActive(true); // Show loading panel at the start
+         // Show loading panel at the start
 
     }
 
@@ -122,13 +123,16 @@ public class GetAIQuestions : MonoBehaviour
         {
             response = www.downloadHandler.text;
 
+            // write response to file for debugging purposes
+            System.IO.File.WriteAllText("AIResponse.txt", response);
+
 
             // if in response exists "UNAVAILABLE" read data from file
 
-            if (response.Contains("UNAVAILABLE"))
+            if (response.Contains("UNAVAILABLE") || response.Contains("INVALID_ARGUMENT") || response.Contains("\"code\": 400"))
             {
                 Debug.LogWarning("Response contains 'UNAVAILABLE', reading from file instead.");
-                response = System.IO.File.ReadAllText("D:/TempAIResponse.txt");
+                response = System.IO.File.ReadAllText("TempAIResponse.txt");
             }
 
 
@@ -167,56 +171,6 @@ public class GetAIQuestions : MonoBehaviour
         if (levelTimer != null)
         {
             levelTimer.timerIsRunning = true; // Disable LevelTimer if it exists
-        }
-    }
-    public static class QuizParser
-    {
-        //public static QuizData Data;
-
-        /// <summary>
-        /// Call this with the full AI response text (including ```json � ```), and it will
-        /// extract the inner JSON and populate QuizParser.Data.
-        /// </summary>
-        public static void ParseAIResponse(string rawResponse)
-        {
-            // 1. Find the start of the JSON block (after ```json\n)
-            const string fenceStart = "```json";
-            const string fenceEnd = "```";
-
-            int startIndex = rawResponse.IndexOf(fenceStart, StringComparison.OrdinalIgnoreCase);
-            if (startIndex < 0)
-            {
-                Debug.LogError("Could not find ```json fence in AI response.");
-                return;
-            }
-            startIndex = rawResponse.IndexOf('\n', startIndex) + 1;
-            if (startIndex <= 0 || startIndex >= rawResponse.Length)
-            {
-                Debug.LogError("Malformed AI response: no newline after ```json.");
-                return;
-            }
-
-            // 2. Find the closing triple backtick
-            int endIndex = rawResponse.IndexOf(fenceEnd, startIndex, StringComparison.Ordinal);
-            if (endIndex < 0)
-            {
-                Debug.LogError("Could not find closing ``` fence in AI response.");
-                return;
-            }
-
-            // 3. Extract just the JSON substring
-            string jsonSubstring = rawResponse.Substring(startIndex, endIndex - startIndex).Trim();
-
-            // 4. Parse into QuizData
-            try
-            {
-                Data = JsonUtility.FromJson<QuizData>(jsonSubstring);
-                Debug.Log("Successfully parsed QuizData. Easy count: " + (Data.easy?.Count ?? 0));
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Failed to parse QuizData: " + e.Message);
-            }
         }
     }
 }

@@ -1,0 +1,44 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n{\n  \"easy\": [\n    {\n      \"question\": \"What does CPU stand for?\",\n      \"options\": [\"Central Processing Unit\", \"Computer Processing Unit\", \"Central Program Unit\", \"Computer Program Unit\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"Which of the following is an input device?\",\n      \"options\": [\"Monitor\", \"Printer\", \"Keyboard\", \"Speaker\"],\n      \"correctIndex\": 2\n    },\n    {\n      \"question\": \"What is RAM?\",\n      \"options\": [\"Read Only Memory\", \"Random Access Memory\", \"Read Access Memory\", \"Random Only Memory\"],\n      \"correctIndex\": 1\n    }\n  ],\n  \"normal\": [\n    {\n      \"question\": \"What is the purpose of an operating system?\",\n      \"options\": [\"To run applications\", \"To manage hardware resources\", \"To provide a user interface\", \"All of the above\"],\n      \"correctIndex\": 3\n    },\n    {\n      \"question\": \"Which data structure follows the LIFO (Last-In, First-Out) principle?\",\n      \"options\": [\"Queue\", \"Stack\", \"Linked List\", \"Tree\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What is the difference between '==' and '=' in most programming languages?\",\n      \"options\": [\"'==' assigns a value, '=' compares values\", \"'==' compares values, '=' assigns a value\", \"They are the same\", \"Neither assigns nor compares\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What is the purpose of a compiler?\",\n      \"options\": [\"To translate source code into machine code\", \"To execute source code directly\", \"To debug source code\", \"To edit source code\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is an algorithm?\",\n      \"options\": [\"A type of computer hardware\", \"A step-by-step procedure for solving a problem\", \"A programming language\", \"A database management system\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"What is the role of a firewall?\",\n      \"options\": [\"To speed up internet connection\", \"To protect a network from unauthorized access\", \"To cool down the computer\", \"To display website content\"],\n      \"correctIndex\": 1\n    }\n  ],\n  \"hard\": [\n    {\n      \"question\": \"What is the time complexity of a binary search algorithm?\",\n      \"options\": [\"O(n)\", \"O(log n)\", \"O(n^2)\", \"O(1)\"],\n      \"correctIndex\": 1\n    },\n    {\n      \"question\": \"Explain the concept of polymorphism in object-oriented programming.\",\n      \"options\": [\"The ability of an object to take on many forms\", \"The ability to create multiple instances of a class\", \"The ability to hide data within a class\", \"The ability to inherit properties from multiple classes\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is the purpose of a virtual machine?\",\n      \"options\": [\"To emulate a physical computer system\", \"To speed up the computer\", \"To create a backup of the operating system\", \"To run multiple operating systems simultaneously\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is the difference between TCP and UDP?\",\n      \"options\": [\"TCP is connection-oriented, UDP is connectionless\", \"TCP is faster than UDP\", \"UDP is more reliable than TCP\", \"They are the same\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is a deadlock in operating systems?\",\n      \"options\": [\"A situation where two or more processes are blocked indefinitely, waiting for each other\", \"A situation where a process crashes due to memory errors\", \"A situation where the CPU overheats\", \"A situation where the hard drive is full\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is the CAP theorem?\",\n      \"options\": [\"Consistency, Availability, Partition Tolerance: you can only choose two\", \"Consistency, Accuracy, Performance: you must have all three\", \"Capacity, Agility, Performance: key to cloud computing\", \"None of the above\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"Explain the concept of a Merkle tree.\",\n      \"options\": [\"A tree data structure where each non-leaf node is the hash of its children\", \"A tree data structure used for sorting algorithms\", \"A tree data structure used for database indexing\", \"A tree data structure used for network routing\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is the difference between authentication and authorization?\",\n      \"options\": [\"Authentication verifies identity, authorization grants access\", \"Authorization verifies identity, authentication grants access\", \"They are the same thing\", \"Neither is related to security\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is the purpose of a garbage collector in programming?\",\n      \"options\": [\"To automatically reclaim memory that is no longer being used\", \"To clean up temporary files\", \"To optimize code performance\", \"To remove viruses from the system\"],\n      \"correctIndex\": 0\n    },\n    {\n      \"question\": \"What is the halting problem in computer science?\",\n      \"options\": [\"The problem of determining whether a given program will halt or run forever\", \"The problem of finding the shortest path between two points\", \"The problem of sorting a list of numbers in ascending order\", \"The problem of finding the largest number in a list\"],\n      \"correctIndex\": 0\n    }\n  ]\n}\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "citationMetadata": {
+        "citationSources": [
+          {
+            "startIndex": 35,
+            "endIndex": 210,
+            "uri": "https://github.com/Rhysjosmin/GEC-Spectrathon"
+          }
+        ]
+      },
+      "avgLogprobs": -0.096511597392160142
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 122,
+    "candidatesTokenCount": 1285,
+    "totalTokenCount": 1407,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 1285
+      }
+    ]
+  },
+  "modelVersion": "gemini-2.0-flash",
+  "responseId": "K549aP_cF6u57dcP_5LAgA0"
+}
